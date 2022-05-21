@@ -1,0 +1,38 @@
+{
+  "name": "network-reconnect",
+  "version": "1.0.0",
+  "description": "Detect network connection and if disconnected try to recover the network",
+  "main": "./src/index.js",
+  "bin": {
+    "check-network": "./src/start.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "node src/start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayanamitech/network-reconnect.git"
+  },
+  "author": "AyanamiTech <ayanami0330@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayanamitech/network-reconnect/issues"
+  },
+  "homepage": "https://github.com/ayanamitech/network-reconnect#readme",
+  "files": [
+    "src/**/*.js",
+    "README.md",
+    "LICENSE",
+    "config.example.json",
+    "contrib"
+  ],
+  "dependencies": {
+    "use-config-json": "1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0"
+  }
+}

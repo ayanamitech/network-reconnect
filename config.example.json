@@ -1,0 +1,12 @@
+{
+  "PING_CHECK": "1.1.1.1,1.0.0.1,8.8.8.8,8.8.4.4",
+  "PING_CHECK_TIMEOUT": 15,
+  "PING_CHECK_INTERVAL": 30,
+  "MAX_PING_RETRY": 2,
+  "ENABLE_RESTART_CMD": true,
+  "RESTART_CMD": "sudo /etc/init.d/networking restart",
+  "RESTART_CMD_FAILOVER": false,
+  "RESTART_CMD_FAILOVER_CMD": "",
+  "RESTART_AFTER": 300,
+  "SLEEP_AFTER_FAILURE": 1800
+}
