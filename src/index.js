@@ -28,14 +28,18 @@ const pingTest = async (config, retry) => {
   return pingResult;
 };
 
-const recoverNetwork = async (config, func) => {
-  const recoverResult = await func();
-  if (recoverResult === true) {
-    const retryPing = await pingTest(config);
-    if (retryPing === true) {
-      console.log('Network recovered');
-      return false;
+const recoverNetwork = async (config, maxRetry, func) => {
+  let retry = 0;
+  while (retry < maxRetry) {
+    const recoverResult = await func();
+    if (recoverResult === true) {
+      const retryPing = await pingTest(config);
+      if (retryPing === true) {
+        console.log('Network recovered');
+        return false;
+      }
     }
+    retry++;
   }
   return true;
 };
@@ -61,14 +65,14 @@ const pingCheck = async (config) => {
     }
   }
   if (config.ENABLE_RESTART_CMD === true) {
-    recovering = await recoverNetwork(config, () => recoverCMD(config.RESTART_CMD));
+    recovering = await recoverNetwork(config, config.RETRY_CMD, () => recoverCMD(config.RESTART_CMD));
   }
   if (config.RESTART_CMD_FAILOVER === true) {
-    recovering = await recoverNetwork(config, () => recoverCMD(config.RESTART_CMD_FAILOVER_CMD));
+    recovering = await recoverNetwork(config, config.RETRY_CMD, () => recoverCMD(config.RESTART_CMD_FAILOVER_CMD));
   }
   if (typeof config.reconnectCallback === 'function') {
     // Expand recovery function from external library
-    recovering = await recoverNetwork(config, config.reconnectCallback);
+    recovering = await recoverNetwork(config, config.RETRY_CMD, config.reconnectCallback);
   }
   console.error('Failed to restart the network from failed ping tests');
   console.error(`Will sleep for ${config.SLEEP_AFTER_FAILURE} seconds to restart the health check`);

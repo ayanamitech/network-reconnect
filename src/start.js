@@ -9,6 +9,7 @@ const defaultConfig = {
   'PING_CHECK_INTERVAL': 30,
   'MAX_PING_RETRY': 2,
   'ENABLE_RESTART_CMD': true,
+  'RETRY_CMD': 2,
   'RESTART_CMD': 'sudo /etc/init.d/networking restart',
   'RESTART_CMD_FAILOVER': false,
   'RESTART_CMD_FAILOVER_CMD': '',
