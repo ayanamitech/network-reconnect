@@ -17,9 +17,9 @@ const pingTest = async (ip, config) => {
 
 const runPing = async (ip, config) => {
   const timeNow = formatTime();
-  console.time(`ping ${ip} ${timeNow} `);
+  console.time(`${timeNow} ping ${ip} `);
   const result = await pingTest(ip, config);
-  console.timeEnd(`ping ${ip} ${timeNow} `);
+  console.timeEnd(`${timeNow} ping ${ip} `);
   return result;
 };
 
