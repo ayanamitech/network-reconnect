@@ -30,7 +30,7 @@
     "contrib"
   ],
   "dependencies": {
-    "use-config-json": "1.0.3"
+    "use-config-json": "1.0.4"
   },
   "devDependencies": {
     "eslint": "^8.15.0"

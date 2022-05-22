@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const process = require('process');
-const loadConfig = require('use-config-json');
+const { loadConfig } = require('use-config-json');
 const NetworkReconnect = require('./index');
 
 const defaultConfig = {
