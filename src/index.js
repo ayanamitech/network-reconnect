@@ -66,13 +66,25 @@ const pingCheck = async (config) => {
   }
   if (config.ENABLE_RESTART_CMD === true) {
     recovering = await recoverNetwork(config, config.RETRY_CMD, () => recoverCMD(config.RESTART_CMD));
+    if (recovering === false) {
+      console.log('Network is online');
+      return;
+    }
   }
   if (config.RESTART_CMD_FAILOVER === true) {
     recovering = await recoverNetwork(config, config.RETRY_CMD, () => recoverCMD(config.RESTART_CMD_FAILOVER_CMD));
+    if (recovering === false) {
+      console.log('Network is online');
+      return;
+    }
   }
   if (typeof config.reconnectCallback === 'function') {
     // Expand recovery function from external library
     recovering = await recoverNetwork(config, config.RETRY_CMD, config.reconnectCallback);
+    if (recovering === false) {
+      console.log('Network is online');
+      return;
+    }
   }
   console.error('Failed to restart the network from failed ping tests');
   console.error(`Will sleep for ${config.SLEEP_AFTER_FAILURE} seconds to restart the health check`);
